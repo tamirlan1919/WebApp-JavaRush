@@ -1,3 +1,76 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+from products.models import Product
+
+User = get_user_model()
 
 # Create your models here.
+
+class Order(models.Model):
+
+    class Status(models.TextChoices):
+        PENDING = 'penging','Ожидает'
+        PAID = 'paid','Оплачен'
+        SHIPPED = 'shipped','Отправлен'
+        DELIVERED = 'delivered','Доставлен'
+        CANCELLED = 'cancelled','Отменен'
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='orders',
+        verbose_name='Пользователь'
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.PENDING,
+        verbose_name='Статус'
+    )
+    total_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Итоговая сумма'
+    )
+    shipping_address = models.TextField(verbose_name='Адрес доставки')
+    full_name = models.CharField(max_length=200, verbose_name='Получаетль')
+    phone = models.CharField(max_length=20, verbose_name='Телефон'),
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name='Заказ'
+        verbose_name_plural = 'Заказы'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'{self.pk} - {self.user.username} '
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name='items',
+        verbose_name='Заказ'
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.PROTECT,
+        related_name='order_items',
+        verbose_name='Товар'
+    )
+    quantity = models.PositiveIntegerField(verbose_name='Кол-во')
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Цена на момент заказа'
+    )
+    class Meta:
+        verbose_name='Позиция заказа'
+        verbose_name_plural = 'Позиции заказа'
+
+
+    def __str__(self):
+        return f'{self.product.name} - x{self.quantity} '
+
