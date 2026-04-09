@@ -9,6 +9,7 @@ class Category(models.Model):
     parent = models.ForeignKey(
         'self',
         null = True,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name='children',
         verbose_name='Родительская категория'

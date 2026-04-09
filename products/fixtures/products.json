@@ -1,0 +1,386 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "name": "Citra Hops (Pellet)",
+      "slug": "citra-hops-pellet",
+      "description": "Citra is a high-alpha acid hop variety with distinct tropical and citrus character. Dominant flavors include grapefruit, lime, melon, gooseberry, and passion fruit. A must-have for any West Coast IPA or New England Hazy.",
+      "price": "4.99",
+      "category": 6,
+      "image": "",
+      "is_active": true,
+      "stock": 250,
+      "created_at": "2024-01-10T10:00:00Z",
+      "updated_at": "2024-01-10T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "name": "Cascade Hops (Pellet)",
+      "slug": "cascade-hops-pellet",
+      "description": "The classic American hop. Cascade delivers a pleasantly floral, spicy, and citrusy aroma with notes of grapefruit. It defined the American pale ale style and remains one of the most widely used hops in craft brewing.",
+      "price": "3.49",
+      "category": 6,
+      "image": "",
+      "is_active": true,
+      "stock": 320,
+      "created_at": "2024-01-11T10:00:00Z",
+      "updated_at": "2024-01-11T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "name": "Mosaic Hops (Pellet)",
+      "slug": "mosaic-hops-pellet",
+      "description": "Mosaic is one of the most complex and sought-after hops on the market. It offers an incredible blend of blueberry, tangerine, papaya, earth, and pine. Perfect for dry hopping NEIPAs and double IPAs.",
+      "price": "5.49",
+      "category": 6,
+      "image": "",
+      "is_active": true,
+      "stock": 180,
+      "created_at": "2024-01-12T10:00:00Z",
+      "updated_at": "2024-01-12T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "name": "Saaz Hops (Pellet)",
+      "slug": "saaz-hops-pellet",
+      "description": "The noble hop of Czech origin. Saaz produces a mild, earthy, and herbal aroma that is the hallmark of traditional Czech Pilsners and lagers. Low alpha acid content makes it ideal for late hop additions and dry hopping delicate lagers.",
+      "price": "3.99",
+      "category": 6,
+      "image": "",
+      "is_active": true,
+      "stock": 200,
+      "created_at": "2024-01-13T10:00:00Z",
+      "updated_at": "2024-01-13T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "name": "Centennial Hops (Pellet)",
+      "slug": "centennial-hops-pellet",
+      "description": "Often called 'Super Cascade', Centennial offers an intense floral and citrus aroma with strong grapefruit and pine notes. High alpha acid content makes it great for bittering, while its aroma profile shines in late additions.",
+      "price": "4.49",
+      "category": 6,
+      "image": "",
+      "is_active": true,
+      "stock": 150,
+      "created_at": "2024-01-14T10:00:00Z",
+      "updated_at": "2024-01-14T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "name": "Simcoe Hops (Whole Leaf)",
+      "slug": "simcoe-hops-whole-leaf",
+      "description": "Simcoe is a dual-purpose hop with a unique combination of earthy, pine, and tropical fruit aromas. It features notes of passion fruit, cat, apricot, and pine. Widely used in IPAs and Imperial IPAs for its intense flavor contribution.",
+      "price": "6.99",
+      "category": 7,
+      "image": "",
+      "is_active": true,
+      "stock": 90,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "name": "Pilsner Malt (25 lb)",
+      "slug": "pilsner-malt-25lb",
+      "description": "The lightest of all base malts, Pilsner Malt is the foundation of light lagers, Pilsners, and many Belgian ales. It provides a clean, delicate malt sweetness with a light, bready character. Malted from the finest two-row barley.",
+      "price": "32.99",
+      "category": 8,
+      "image": "",
+      "is_active": true,
+      "stock": 60,
+      "created_at": "2024-01-20T10:00:00Z",
+      "updated_at": "2024-01-20T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "name": "Maris Otter Pale Malt (55 lb)",
+      "slug": "maris-otter-pale-malt-55lb",
+      "description": "Maris Otter is the premier English pale malt, prized by brewers for over 50 years. It delivers a distinctly rich, biscuity, and nutty malt backbone that adds complexity and depth to British ales, ESBs, and porters.",
+      "price": "64.50",
+      "category": 8,
+      "image": "",
+      "is_active": true,
+      "stock": 40,
+      "created_at": "2024-01-21T10:00:00Z",
+      "updated_at": "2024-01-21T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "name": "Caramel 60L Malt (1 lb)",
+      "slug": "caramel-60l-malt-1lb",
+      "description": "Caramel 60 is a crystal malt that adds deep amber color, a rich caramel sweetness, and good body to your beer. It contributes notes of toffee and sweet caramel and improves head retention. Widely used in ambers, reds, and porters.",
+      "price": "2.49",
+      "category": 9,
+      "image": "",
+      "is_active": true,
+      "stock": 500,
+      "created_at": "2024-01-22T10:00:00Z",
+      "updated_at": "2024-01-22T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "name": "Chocolate Malt (1 lb)",
+      "slug": "chocolate-malt-1lb",
+      "description": "Chocolate Malt is a highly kilned specialty malt that imparts deep brown color and rich roasted coffee and chocolate flavors. Essential for stouts, porters, and dark ales. Use in small quantities for great effect.",
+      "price": "2.79",
+      "category": 9,
+      "image": "",
+      "is_active": true,
+      "stock": 380,
+      "created_at": "2024-01-23T10:00:00Z",
+      "updated_at": "2024-01-23T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "name": "Munich Malt Type I (55 lb)",
+      "slug": "munich-malt-type-i-55lb",
+      "description": "Munich Malt Type I is a fully modified base malt with a rich, deep malt flavor and golden color. It provides a strong malty backbone with notes of bread crust and toasted grain. The cornerstone of German lagers and Märzens.",
+      "price": "59.99",
+      "category": 8,
+      "image": "",
+      "is_active": true,
+      "stock": 35,
+      "created_at": "2024-01-24T10:00:00Z",
+      "updated_at": "2024-01-24T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+      "name": "Unmalted Wheat (10 lb)",
+      "slug": "unmalted-wheat-10lb",
+      "description": "Raw unmalted wheat adds haze, body, and a distinctive grainy wheat flavor to wheat beers and NEIPAs. It increases protein content which contributes to head retention and that signature hazy pour.",
+      "price": "9.99",
+      "category": 9,
+      "image": "",
+      "is_active": true,
+      "stock": 120,
+      "created_at": "2024-01-25T10:00:00Z",
+      "updated_at": "2024-01-25T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+      "name": "Safale US-05 (11.5g)",
+      "slug": "safale-us-05",
+      "description": "The most popular dry ale yeast in America. US-05 is a clean, crisp strain that ferments quickly and floculates well. It produces a very clean fermentation with low ester profile, making it ideal for American ales, IPAs, and pale ales.",
+      "price": "3.99",
+      "category": 10,
+      "image": "",
+      "is_active": true,
+      "stock": 600,
+      "created_at": "2024-02-01T10:00:00Z",
+      "updated_at": "2024-02-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+      "name": "Safale S-04 (11.5g)",
+      "slug": "safale-s-04",
+      "description": "A well-known, English-style ale yeast selected for its fast fermentation character and high flocculation. Produces ales with a good balance of fruit and malt, with a slightly sweet finish. Great for bitters, stouts, and English ales.",
+      "price": "3.99",
+      "category": 10,
+      "image": "",
+      "is_active": true,
+      "stock": 420,
+      "created_at": "2024-02-02T10:00:00Z",
+      "updated_at": "2024-02-02T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 15,
+    "fields": {
+      "name": "Imperial Yeast A38 Juice",
+      "slug": "imperial-yeast-a38-juice",
+      "description": "The quintessential NEIPA yeast. A38 Juice produces a massive amount of tropical esters — think mango, passion fruit, and peach — while remaining very soft and hazy. It works best at warmer fermentation temperatures for maximum ester production.",
+      "price": "11.99",
+      "category": 11,
+      "image": "",
+      "is_active": true,
+      "stock": 85,
+      "created_at": "2024-02-03T10:00:00Z",
+      "updated_at": "2024-02-03T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 16,
+    "fields": {
+      "name": "Wyeast 1056 American Ale",
+      "slug": "wyeast-1056-american-ale",
+      "description": "One of the most widely used liquid yeasts in craft brewing. Wyeast 1056 American Ale produces very clean, well-balanced ales with low fruitiness and low diacetyl. Excellent for American pale ales, IPAs, stouts, and most ale styles.",
+      "price": "10.49",
+      "category": 11,
+      "image": "",
+      "is_active": true,
+      "stock": 70,
+      "created_at": "2024-02-04T10:00:00Z",
+      "updated_at": "2024-02-04T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 17,
+    "fields": {
+      "name": "West Coast IPA All-Grain Kit",
+      "slug": "west-coast-ipa-kit",
+      "description": "Everything you need to brew a classic West Coast IPA at home. This all-grain kit includes pre-milled 2-Row Pale Malt, Caramel 20, Centennial hops for bittering, Citra and Mosaic for late additions and dry hopping, plus a packet of US-05. Makes 5 gallons at ~6.5% ABV.",
+      "price": "49.99",
+      "category": 4,
+      "image": "",
+      "is_active": true,
+      "stock": 45,
+      "created_at": "2024-02-10T10:00:00Z",
+      "updated_at": "2024-02-10T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 18,
+    "fields": {
+      "name": "Munich Dunkel Lager Kit",
+      "slug": "munich-dunkel-lager-kit",
+      "description": "Brew an authentic Bavarian Dunkel right in your own home. This kit features Munich Malt Type I, Carafa Special II for color and roast, Hallertau Mittelfrueh hops, and Saflager W-34/70 dry lager yeast. Makes 5 gallons at approximately 5.3% ABV.",
+      "price": "54.99",
+      "category": 4,
+      "image": "",
+      "is_active": true,
+      "stock": 28,
+      "created_at": "2024-02-11T10:00:00Z",
+      "updated_at": "2024-02-11T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 19,
+    "fields": {
+      "name": "Oatmeal Stout Extract Kit",
+      "slug": "oatmeal-stout-extract-kit",
+      "description": "A beginner-friendly extract kit for brewing a rich, smooth Oatmeal Stout. Includes liquid malt extract, flaked oats, Chocolate and Roasted Barley specialty grains, Fuggle hops, and Safale S-04. Dark, roasty, and satisfying. Makes 5 gallons at ~5.8% ABV.",
+      "price": "44.99",
+      "category": 4,
+      "image": "",
+      "is_active": true,
+      "stock": 0,
+      "created_at": "2024-02-12T10:00:00Z",
+      "updated_at": "2024-02-12T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 20,
+    "fields": {
+      "name": "Stainless Steel Fermenter (6.5 gal)",
+      "slug": "stainless-steel-fermenter-6gal",
+      "description": "A premium brushed stainless steel fermenter with a wide mouth lid, racking arm, pressure-rated lid with airlock port, and integrated thermometer. Perfect for fermenting ales and lagers. Easy to clean and built to last a lifetime.",
+      "price": "129.99",
+      "category": 5,
+      "image": "",
+      "is_active": true,
+      "stock": 22,
+      "created_at": "2024-02-15T10:00:00Z",
+      "updated_at": "2024-02-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 21,
+    "fields": {
+      "name": "Brew Kettle 10 Gallon",
+      "slug": "brew-kettle-10-gallon",
+      "description": "Heavy-gauge 304 stainless steel 10-gallon brew kettle with a calibrated volume markings, welded thermometer port, ball valve with pickup tube, and a laser-etched volume scale. Suitable for 5-gallon all-grain or 10-gallon extract batches.",
+      "price": "189.00",
+      "category": 5,
+      "image": "",
+      "is_active": true,
+      "stock": 14,
+      "created_at": "2024-02-16T10:00:00Z",
+      "updated_at": "2024-02-16T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 22,
+    "fields": {
+      "name": "Inkbird ITC-308 Temperature Controller",
+      "slug": "inkbird-itc-308-temp-controller",
+      "description": "Dual-stage temperature controller for precise fermentation temperature management. Controls both heating and cooling devices simultaneously. Features a large LED display, NTC sensor probe, deviation alarms, and compressor delay protection. Essential for lager brewing.",
+      "price": "39.99",
+      "category": 5,
+      "image": "",
+      "is_active": true,
+      "stock": 55,
+      "created_at": "2024-02-17T10:00:00Z",
+      "updated_at": "2024-02-17T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 23,
+    "fields": {
+      "name": "Galaxy Hops (Pellet)",
+      "slug": "galaxy-hops-pellet",
+      "description": "An Australian hop variety with an incredibly high alpha acid content and an explosive tropical aroma. Galaxy offers notes of passionfruit, peach, citrus, and a subtle earthiness. Exceptional for dry hopping NEIPAs and fruited IPAs.",
+      "price": "5.99",
+      "category": 6,
+      "image": "",
+      "is_active": true,
+      "stock": 140,
+      "created_at": "2024-02-20T10:00:00Z",
+      "updated_at": "2024-02-20T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 24,
+    "fields": {
+      "name": "Roasted Barley (1 lb)",
+      "slug": "roasted-barley-1lb",
+      "description": "Unmalted barley that has been roasted to a very dark level, imparting a sharp, dry, coffee-like bitterness and deep black color. It is the defining grain of Irish Dry Stouts. Use sparingly for color and roast character without sweetness.",
+      "price": "2.29",
+      "category": 9,
+      "image": "",
+      "is_active": true,
+      "stock": 290,
+      "created_at": "2024-02-21T10:00:00Z",
+      "updated_at": "2024-02-21T10:00:00Z"
+    }
+  }
+]
