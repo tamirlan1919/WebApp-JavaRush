@@ -1,0 +1,581 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина | Hop & Barley</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        .cart-shell {
+            background:
+                radial-gradient(circle at top right, rgba(2, 84, 45, 0.08), transparent 24%),
+                linear-gradient(180deg, #f7f4ed 0%, #ffffff 100%);
+            padding: 48px 24px 80px;
+        }
+
+        .cart-stage {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .cart-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+        }
+
+        .cart-hero__eyebrow {
+            margin: 0 0 12px;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .cart-hero__title {
+            margin: 0;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 0.98;
+            font-weight: 700;
+            color: var(--black-main);
+        }
+
+        .cart-hero__text {
+            max-width: 340px;
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--grey-text);
+            text-align: right;
+        }
+
+        .cart-messages {
+            max-width: 1240px;
+            margin: 24px auto 0;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cart-message {
+            padding: 14px 18px;
+            border-radius: 14px;
+            border: 1px solid var(--border-default);
+            background: #ffffff;
+            color: var(--black-main);
+            box-shadow: 0 10px 24px rgba(17, 29, 19, 0.05);
+        }
+
+        .cart-message.success {
+            border-color: rgba(2, 84, 45, 0.24);
+            background: rgba(2, 84, 45, 0.06);
+        }
+
+        .cart-message.error {
+            border-color: rgba(180, 50, 50, 0.24);
+            background: rgba(180, 50, 50, 0.06);
+        }
+
+        .cart-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 340px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .cart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .cart-card {
+            display: grid;
+            grid-template-columns: 190px minmax(0, 1fr);
+            gap: 24px;
+            padding: 22px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(17, 29, 19, 0.08);
+            box-shadow: 0 22px 50px rgba(17, 29, 19, 0.08);
+            backdrop-filter: blur(6px);
+        }
+
+        .cart-card__media {
+            display: block;
+            height: 190px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #355f30 0%, #162f15 100%);
+        }
+
+        .cart-card__image,
+        .cart-card__placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-card__placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 52px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .cart-card__body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+            min-width: 0;
+        }
+
+        .cart-card__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .cart-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: rgba(2, 84, 45, 0.08);
+            color: var(--green);
+        }
+
+        .cart-pill--soft {
+            background: rgba(17, 29, 19, 0.06);
+            color: var(--grey-text);
+        }
+
+        .cart-card__title {
+            margin: 0;
+            font-size: clamp(24px, 4vw, 30px);
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--black-main);
+        }
+
+        .cart-card__desc {
+            margin: 0;
+            max-width: 60ch;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--grey-text);
+        }
+
+        .cart-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cart-card__pricebox {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cart-card__priceline {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cart-card__price {
+            margin: 0;
+            font-size: 32px;
+            line-height: 1;
+            font-weight: 700;
+            color: var(--black-main);
+        }
+
+        .cart-card__qty {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--background-green);
+            color: var(--green);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .cart-card__unit {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--grey-text);
+        }
+
+        .cart-card__remove {
+            min-width: 128px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(17, 29, 19, 0.18);
+            background: #fff;
+            color: var(--black-main);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .cart-card__remove:hover {
+            background: rgba(180, 50, 50, 0.06);
+            border-color: rgba(180, 50, 50, 0.28);
+            color: #9e2d2d;
+        }
+
+        .cart-summary {
+            position: sticky;
+            top: 24px;
+            padding: 28px;
+            border-radius: 24px;
+            background:
+                linear-gradient(180deg, rgba(17, 29, 19, 0.97), rgba(17, 29, 19, 0.92)),
+                linear-gradient(135deg, #31572c, #162f15);
+            color: var(--white-text);
+            box-shadow: 0 28px 64px rgba(17, 29, 19, 0.18);
+        }
+
+        .cart-summary__eyebrow {
+            margin: 0 0 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #bfd8c0;
+        }
+
+        .cart-summary__title {
+            margin: 0 0 22px;
+            font-size: 32px;
+            line-height: 1.05;
+            font-weight: 700;
+        }
+
+        .cart-summary__row,
+        .cart-summary__total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .cart-summary__row {
+            padding: 0 0 14px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(245, 245, 245, 0.12);
+            font-size: 15px;
+            color: rgba(245, 245, 245, 0.78);
+        }
+
+        .cart-summary__total {
+            margin: 28px 0 24px;
+        }
+
+        .cart-summary__total span {
+            font-size: 15px;
+            color: rgba(245, 245, 245, 0.78);
+        }
+
+        .cart-summary__total strong {
+            font-size: 34px;
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        .cart-summary .button {
+            width: 100%;
+            min-height: 48px;
+        }
+
+        .cart-summary__checkout {
+            margin-top: 12px;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .cart-summary__note {
+            margin: 14px 0 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(245, 245, 245, 0.74);
+        }
+
+        .cart-empty {
+            padding: 48px 36px;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(17, 29, 19, 0.08);
+            box-shadow: 0 24px 56px rgba(17, 29, 19, 0.08);
+        }
+
+        .cart-empty__badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(2, 84, 45, 0.08);
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .cart-empty__title {
+            margin: 0 0 14px;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.06;
+            font-weight: 700;
+            color: var(--black-main);
+        }
+
+        .cart-empty__text {
+            max-width: 58ch;
+            margin: 0 0 24px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--grey-text);
+        }
+
+        .cart-empty__action {
+            max-width: 240px;
+        }
+
+        @media (max-width: 1024px) {
+            .cart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 760px) {
+            header {
+                height: auto;
+                padding: 20px 16px;
+            }
+
+            .header-container {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .header__nav ul {
+                width: auto;
+                flex-wrap: wrap;
+                gap: 8px 12px;
+                justify-content: flex-start;
+            }
+
+            .cart-shell {
+                padding: 32px 16px 56px;
+            }
+
+            .cart-hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-hero__text {
+                max-width: none;
+                text-align: left;
+            }
+
+            .cart-card {
+                grid-template-columns: 1fr;
+                padding: 18px;
+            }
+
+            .cart-card__media {
+                height: 220px;
+            }
+
+            .cart-summary,
+            .cart-empty {
+                padding: 22px;
+            }
+
+            footer {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <a href="{% url 'products:catalog' %}" class="header__logo">
+            <img src="{% static 'img/logo.svg' %}" alt="Hop & Barley Logo">
+            <p class="logo-text">Hop & Barley</p>
+        </a>
+        <nav class="header__nav">
+            <ul>
+                <li><a href="{% url 'products:catalog' %}">Products</a></li>
+                <li><a href="#">Guides & Recipes</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header__auth-buttons" id="auth-guest">
+            <a href="#" class="button button--secondary">Sign in</a>
+            <a href="#" class="button button--primary">Register</a>
+        </div>
+
+        <div class="header__user-actions" id="auth-user">
+            <a href="#" class="user-icon" aria-label="My Account">
+                <img src="{% static 'img/icons/User_alt.svg' %}" alt="User Account">
+            </a>
+            <a href="{% url 'cart' %}" class="cart-icon" aria-label="Shopping Cart">
+                <img src="{% static 'img/icons/Shopping_bag.svg' %}" alt="Shopping Cart">
+            </a>
+        </div>
+    </div>
+</header>
+
+{% if messages %}
+<div class="cart-messages">
+    {% for message in messages %}
+    <div class="cart-message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<main class="cart-shell">
+    <div class="cart-stage">
+        <section class="cart-hero">
+            <div>
+                <p class="cart-hero__eyebrow">Ваш заказ</p>
+                <h1 class="cart-hero__title">Корзина</h1>
+            </div>
+            <p class="cart-hero__text">
+                {% if cart|length > 0 %}
+                    В корзине {{ cart|length }} ед. товара. Проверьте состав заказа и сумму перед следующим шагом.
+                {% else %}
+                    Добавьте ингредиенты или наборы для варки, и они появятся здесь в общем списке.
+                {% endif %}
+            </p>
+        </section>
+
+        {% if cart|length > 0 %}
+        <section class="cart-grid">
+            <div class="cart-list">
+                {% for item in cart %}
+                <article class="cart-card">
+                    <a href="{% url 'products:detail' item.product.slug %}" class="cart-card__media" aria-label="Открыть {{ item.product.name }}">
+                        {% if item.product.image %}
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="cart-card__image">
+                        {% else %}
+                        <div class="cart-card__placeholder">HB</div>
+                        {% endif %}
+                    </a>
+
+                    <div class="cart-card__body">
+                        <div>
+                            <div class="cart-card__meta">
+                                <span class="cart-pill">{{ item.product.category.name }}</span>
+                                <span class="cart-pill cart-pill--soft">В наличии: {{ item.product.stock }} шт.</span>
+                            </div>
+                            <h2 class="cart-card__title">
+                                <a href="{% url 'products:detail' item.product.slug %}">{{ item.product.name }}</a>
+                            </h2>
+                            <p class="cart-card__desc">{{ item.product.description|truncatewords:22 }}</p>
+                        </div>
+
+                        <div class="cart-card__footer">
+                            <div class="cart-card__pricebox">
+                                <div class="cart-card__priceline">
+                                    <p class="cart-card__price">${{ item.total_price|floatformat:2 }}</p>
+                                    <span class="cart-card__qty">{{ item.quantity }} шт.</span>
+                                </div>
+                                <p class="cart-card__unit">${{ item.price|floatformat:2 }} за единицу</p>
+                            </div>
+
+                            <form method="post" action="{% url 'cart_remove' item.product.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="cart-card__remove">Удалить</button>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <aside class="cart-summary">
+                <p class="cart-summary__eyebrow">Сводка заказа</p>
+                <h2 class="cart-summary__title">Итого</h2>
+                <div class="cart-summary__row">
+                    <span>Единиц товара</span>
+                    <strong>{{ cart|length }}</strong>
+                </div>
+                <div class="cart-summary__row">
+                    <span>Статус корзины</span>
+                    <strong>Активна</strong>
+                </div>
+                <div class="cart-summary__total">
+                    <span>К оплате</span>
+                    <strong>${{ total|floatformat:2 }}</strong>
+                </div>
+                <a href="{% url 'products:catalog' %}" class="button button--secondary">Продолжить покупки</a>
+                <button type="button" class="button button--primary cart-summary__checkout" disabled>Оформление скоро</button>
+                <p class="cart-summary__note">Шаблон уже использует реальные данные из сессии: количество, товар, изображение и итоговую сумму.</p>
+            </aside>
+        </section>
+        {% else %}
+        <section class="cart-empty">
+            <span class="cart-empty__badge">Корзина пуста</span>
+            <h2 class="cart-empty__title">Пора выбрать основу для следующей варки</h2>
+            <p class="cart-empty__text">Откройте каталог, добавьте хмель, солод, дрожжи или готовые наборы, и корзина автоматически соберет ваш заказ на этой странице.</p>
+            <a href="{% url 'products:catalog' %}" class="button button--primary cart-empty__action">Перейти в каталог</a>
+        </section>
+        {% endif %}
+    </div>
+</main>
+
+<footer>
+    <img src="{% static 'img/background/image-footer.svg' %}" alt="Hop & Barley Hops Logo" class="footer__hops-logo">
+    <nav class="footer__nav">
+        <ul>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">License</a></li>
+        </ul>
+    </nav>
+    <p class="footer__copyright">© Hop & Barley 2025. All rights reserved</p>
+</footer>
+</body>
+</html>

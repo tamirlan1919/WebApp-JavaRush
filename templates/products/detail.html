@@ -401,7 +401,7 @@
 
     <!-- Cart -->
     {% if product.stock > 0 %}
-    <form class="detail-cart-form" method="POST" action="#">
+    <form class="detail-cart-form" method="POST" action="{% url 'cart_add' product.id %}">
       {% csrf_token %}
       <div class="qty-wrap">
         <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>

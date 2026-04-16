@@ -9,11 +9,11 @@ User = get_user_model()
 class Order(models.Model):
 
     class Status(models.TextChoices):
-        PENDING = 'penging','Ожидает'
-        PAID = 'paid','Оплачен'
-        SHIPPED = 'shipped','Отправлен'
-        DELIVERED = 'delivered','Доставлен'
-        CANCELLED = 'cancelled','Отменен'
+        PENDING = 'pending', 'Ожидает'
+        PAID = 'paid', 'Оплачен'
+        SHIPPED = 'shipped', 'Отправлен'
+        DELIVERED = 'delivered', 'Доставлен'
+        CANCELLED = 'cancelled', 'Отменен'
 
     user = models.ForeignKey(
         User,
@@ -33,8 +33,8 @@ class Order(models.Model):
         verbose_name='Итоговая сумма'
     )
     shipping_address = models.TextField(verbose_name='Адрес доставки')
-    full_name = models.CharField(max_length=200, verbose_name='Получаетль')
-    phone = models.CharField(max_length=20, verbose_name='Телефон'),
+    full_name = models.CharField(max_length=200, verbose_name='Получатель')
+    phone = models.CharField(max_length=20, verbose_name='Телефон')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -73,4 +73,3 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.product.name} - x{self.quantity} '
-

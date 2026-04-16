@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ оформлен | Hop & Barley</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        .success-shell {
+            background:
+                radial-gradient(circle at top right, rgba(2, 84, 45, 0.08), transparent 24%),
+                linear-gradient(180deg, #f7f4ed 0%, #ffffff 100%);
+            padding: 48px 24px 80px;
+        }
+
+        .success-stage {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .success-card {
+            padding: 32px;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(17, 29, 19, 0.08);
+            box-shadow: 0 24px 56px rgba(17, 29, 19, 0.08);
+        }
+
+        .success-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(2, 84, 45, 0.08);
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .success-title {
+            margin: 0 0 12px;
+            font-size: clamp(32px, 5vw, 54px);
+            line-height: 0.98;
+            font-weight: 700;
+            color: var(--black-main);
+        }
+
+        .success-text {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--grey-text);
+        }
+
+        .success-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            gap: 22px;
+            margin-top: 28px;
+        }
+
+        .success-section,
+        .success-summary {
+            padding: 24px;
+            border-radius: 22px;
+            background: #faf8f3;
+            border: 1px solid rgba(17, 29, 19, 0.08);
+        }
+
+        .success-section__title,
+        .success-summary__title {
+            margin: 0 0 18px;
+            font-size: 24px;
+            line-height: 1.15;
+            font-weight: 700;
+            color: var(--black-main);
+        }
+
+        .success-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .success-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(17, 29, 19, 0.08);
+        }
+
+        .success-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .success-item__name {
+            font-size: 15px;
+            line-height: 1.45;
+            font-weight: 600;
+            color: var(--black-main);
+        }
+
+        .success-item__meta,
+        .success-summary__row {
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--grey-text);
+        }
+
+        .success-item__price {
+            font-size: 15px;
+            line-height: 1.35;
+            font-weight: 700;
+            color: var(--black-main);
+            white-space: nowrap;
+        }
+
+        .success-summary {
+            background:
+                linear-gradient(180deg, rgba(17, 29, 19, 0.97), rgba(17, 29, 19, 0.92)),
+                linear-gradient(135deg, #31572c, #162f15);
+            color: var(--white-text);
+        }
+
+        .success-summary__title {
+            color: var(--white-text);
+        }
+
+        .success-summary__row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 14px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(245, 245, 245, 0.12);
+            color: rgba(245, 245, 245, 0.78);
+        }
+
+        .success-summary__total {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 26px;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        .success-summary__total strong:last-child {
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .success-actions .button {
+            min-height: 48px;
+        }
+
+        @media (max-width: 860px) {
+            .success-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .success-shell {
+                padding: 32px 16px 56px;
+            }
+
+            .success-card,
+            .success-section,
+            .success-summary {
+                padding: 22px;
+            }
+
+            .success-actions .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<main class="success-shell">
+    <div class="success-stage">
+        <section class="success-card">
+            <span class="success-eyebrow">Order Confirmed</span>
+            <h1 class="success-title">Заказ №{{ order.id }} оформлен</h1>
+            <p class="success-text">Мы сохранили заказ, зарезервировали товар на складе и передали заявку в обработку. Доставка будет оформлена на адрес: <strong>{{ order.shipping_address }}</strong>.</p>
+
+            <div class="success-grid">
+                <section class="success-section">
+                    <h2 class="success-section__title">Состав заказа</h2>
+                    <div class="success-items">
+                        {% for item in order.items.all %}
+                        <div class="success-item">
+                            <div>
+                                <div class="success-item__name">{{ item.product.name }}</div>
+                                <div class="success-item__meta">{{ item.quantity }} шт. x ${{ item.price|floatformat:2 }}</div>
+                            </div>
+                            <div class="success-item__price">${{ item.price|floatformat:2 }}/шт</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <aside class="success-summary">
+                    <h2 class="success-summary__title">Детали</h2>
+                    <div class="success-summary__row">
+                        <span>Статус</span>
+                        <strong>{{ order.get_status_display }}</strong>
+                    </div>
+                    <div class="success-summary__row">
+                        <span>Получатель</span>
+                        <strong>{{ order.full_name }}</strong>
+                    </div>
+                    <div class="success-summary__row">
+                        <span>Телефон</span>
+                        <strong>{{ order.phone }}</strong>
+                    </div>
+                    <div class="success-summary__total">
+                        <strong>Итого</strong>
+                        <strong>${{ order.total_price|floatformat:2 }}</strong>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="success-actions">
+                <a href="{% url 'products:catalog' %}" class="button button--primary">Вернуться в каталог</a>
+                <a href="{% url 'cart' %}" class="button button--secondary">Открыть корзину</a>
+            </div>
+        </section>
+    </div>
+</main>
+</body>
+</html>
