@@ -1,5 +1,4 @@
 from decimal import Decimal
-from django.conf import settings
 from products.models import Product
 
 CART_SESSION_KEY = 'cart'
@@ -34,8 +33,8 @@ class Cart:
 
         self.save()
 
-    def remove(self, product_id: int) -> None:
-        key = str(product_id)
+    def remove(self, product) -> None:
+        key = str(product.id)
         if key in self.cart:
             del self.cart[key]
             self.save()

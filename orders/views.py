@@ -139,6 +139,8 @@ class CheckoutView(LoginRequiredMixin, View):
         #Отправить сообщение администратору
 
 
+
+
 class OrderSuccessView(LoginRequiredMixin, DetailView):
     model = Order
     template_name = 'orders/success.html'

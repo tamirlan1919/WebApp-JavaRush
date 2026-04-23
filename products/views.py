@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.db.models import QuerySet, Avg
 from .models import Product, Category
 from django.views.generic import ListView, DetailView
